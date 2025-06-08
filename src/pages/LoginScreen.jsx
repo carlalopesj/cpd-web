@@ -38,7 +38,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <div className={styles.container} onClick={() => document.activeElement?.blur()}>
+    <div className={styles.container} >
       <Logo />
       <div className={styles.formContainer}>
         <Input placeholder="Usuário" value={id} onChange={setId} />

@@ -41,8 +41,8 @@ export default function LoginScreen() {
     <div className={styles.container} onClick={() => document.activeElement?.blur()}>
       <Logo />
       <div className={styles.formContainer}>
-        <Input placeholder="Usuário" value={id} onChangeText={setId} />
-        <Input placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry />
+        <Input placeholder="Usuário" value={id} onChange={setId} />
+        <Input placeholder="Senha" value={password} onChange={setPassword} secureTextEntry />
         <CustomButton text="Entrar" onPress={login} />
       </div>
     </div>

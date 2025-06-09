@@ -24,10 +24,7 @@ export default function LoginScreen() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("profile_id", data.profile_id.toString());
 
-        if (data.profile_id === 1) navigate("/conference");
-        else if (data.profile_id === 2) navigate("/stock");
-        else if (data.profile_id === 3) navigate("/production");
-        else navigate("/home");
+        if (data.profile_id === 4) navigate("/dashboard");
       } else {
         alert(data.message || "Erro no servidor");
       }
@@ -43,7 +40,7 @@ export default function LoginScreen() {
       <div className={styles.formContainer}>
         <Input placeholder="Usuário" value={id} onChange={setId} />
         <Input placeholder="Senha" value={password} onChange={setPassword} secureTextEntry />
-        <CustomButton text="Entrar" onPress={login} />
+        <CustomButton text="Entrar" onClick={login} />
       </div>
     </div>
   );

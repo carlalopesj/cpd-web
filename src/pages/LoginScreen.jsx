@@ -39,7 +39,7 @@ export default function LoginScreen() {
       <Logo />
       <div className={styles.formContainer}>
         <Input placeholder="Usuário" value={id} onChange={setId} />
-        <Input placeholder="Senha" value={password} onChange={setPassword} secureTextEntry />
+        <Input placeholder="Senha" type="password" value={password} onChange={setPassword} secureTextEntry />
         <CustomButton text="Entrar" onClick={login} />
       </div>
     </div>

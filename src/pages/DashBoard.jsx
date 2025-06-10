@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import styles from "./Dashboard.module.css";
+import styles from "./Dashboard.module.css"; 
 import { IoArrowBack } from "react-icons/io5";
 
 export default function Dashboard() {

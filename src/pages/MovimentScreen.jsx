@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { IoArrowBack } from "react-icons/io5"; 
-import styles from "./MovimentScreen.module.css"; 
+import { IoArrowBack } from "react-icons/io5";
+import styles from "./MovimentScreen.module.css";
 
 export default function MovimentScreen() {
     const navigate = useNavigate();
     const [moviments, setMoviments] = useState([]);
-    const [loading, setLoading] = useState(true); 
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
 
     const formatDateTime = (isoString) => {
         if (!isoString) return "N/A";
@@ -33,7 +32,7 @@ export default function MovimentScreen() {
 
                 if (response.ok) {
                     
-                    const sortedData = result.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+                    const sortedData = result.sort((a, b) => new Date(b.data) - new Date(a.data));
                     setMoviments(sortedData);
                 } else {
                     setError(result.message || "Erro ao buscar dados");
@@ -64,7 +63,7 @@ export default function MovimentScreen() {
 
             {loading && <p className={styles.loadingText}>Carregando histórico...</p>}
             {error && <p className={styles.errorText}>{error}</p>}
-            
+
             {!loading && !error && (
                 <div className={styles.tableContainer}>
                     <table className={styles.table}>
@@ -72,7 +71,7 @@ export default function MovimentScreen() {
                             <tr>
                                 <th>Data e Hora</th>
                                 <th>Usuário</th>
-                                <th>Tipo de Movimento</th>
+                                <th>Estágio</th>
                                 <th>Nº da Caixa</th>
                                 <th>Observação</th>
                             </tr>
@@ -80,12 +79,22 @@ export default function MovimentScreen() {
                         <tbody>
                             {moviments.length > 0 ? (
                                 moviments.map((item) => (
-                                    <tr key={item.id}> {}
-                                        <td data-label="Data e Hora">{formatDateTime(item.created_at)}</td>
-                                        <td data-label="Usuário">{item.user_name || "N/A"}</td>
-                                        <td data-label="Tipo de Movimento">{item.type || "N/A"}</td>
-                                        <td data-label="Nº da Caixa">{item.box_number || "N/A"}</td>
-                                        <td data-label="Observação">{item.observation || "Nenhuma"}</td>
+                                    
+                                    <tr key={`${item["Id da Caixa"]}-${item.data}`}>
+                                        {}
+                                        <td data-label="Data e Hora">{formatDateTime(item.data)}</td>
+                                        
+                                        {}
+                                        <td data-label="Usuário">{item.nome || "N/A"}</td>
+
+                                        {}
+                                        <td data-label="Estágio">{item.estágio || "N/A"}</td>
+                                        
+                                        {}
+                                        <td data-label="Nº da Caixa">{item["Número da Caixa"] || "N/A"}</td>
+                                        
+                                        {}
+                                        <td data-label="Observação">{`Restaurante: ${item.restaurante}, Cargo: ${item.especialidade}`}</td>
                                     </tr>
                                 ))
                             ) : (

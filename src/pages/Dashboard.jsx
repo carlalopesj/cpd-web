@@ -30,6 +30,13 @@ export default function Dashboard() {
                 >
                     <span className={styles.buttonText}>Movimentações</span>
                 </button>
+
+                <button
+                    className={styles.button}
+                    onClick={() => navigate("/boxes")}
+                >
+                    <span className={styles.buttonText}>Caixas</span>
+                </button>
             </div>
 
             <button

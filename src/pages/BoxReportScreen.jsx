@@ -12,34 +12,34 @@ export default function BoxReportScreen() {
     const [error, setError] = useState(null);
 
     //Modal
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [boxToDelete, setBoxToDelete] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false); 
+    const [boxToDelete, setBoxToDelete] = useState(null); 
 
-    const handleGoBack = () => {
-        navigate(-1);
-    };
+    const handleGoBack = () => { 
+        navigate(-1); 
+    }; 
 
-    const fetchBoxes = async () => {
-        setLoading(true);
-        setError(null);
-        try {
-            const token = localStorage.getItem("token");
-            const response = await fetch("https://cpd-backend-shcz.onrender.com/api/boxreport", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-            });
-            const result = await response.json();
-            if (response.ok) {
-                setBoxes(result.sort((a, b) => b.id - a.id));
-            } else {
-                setError(result.message || "Erro ao buscar dados das caixas");
-            }
-        } catch (err) {
-            setError("Não foi possível conectar ao servidor.");
-        } finally {
+    const fetchBoxes = async () => { 
+        setLoading(true); 
+        setError(null); 
+        try { 
+            const token = localStorage.getItem("token"); 
+            const response = await fetch("https://cpd-backend-shcz.onrender.com/api/boxreport", { 
+                method: "GET", 
+                headers: { 
+                    "Content-Type": "application/json", 
+                    "Authorization": `Bearer ${token}`, 
+                }, 
+            }); 
+            const result = await response.json(); 
+            if (response.ok) {  
+                setBoxes(result.sort((a, b) => b.id - a.id)); 
+            } else { 
+                setError(result.message || "Erro ao buscar dados das caixas"); 
+            } 
+        } catch (err) { 
+            setError("Não foi possível conectar ao servidor."); 
+        } finally { 
             setLoading(false);
         }
     };

@@ -48,10 +48,10 @@
 }
 
 .table th {
-    padding: 12px 15px;
+    padding: 12px 15px; 
     text-align: left;
-    font-weight: bold;
-    color: #333;
+    font-weight: bold; 
+    color: #333; 
     border-bottom: 2px solid #ddd;
 }
 
@@ -72,26 +72,26 @@
 
 
 .table tbody tr td[colSpan="5"] {
-    text-align: center;
-    padding: 2rem;
-    font-style: italic;
-    color: #888;
+    text-align: center; 
+    padding: 2rem; 
+    font-style: italic; 
+    color: #888; 
 }
 
 
 .deleteButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    transition: transform 0.2s ease-in-out;
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 5px; 
+    transition: transform 0.2s ease-in-out; 
 }
 
-.deleteButton:hover {
-    transform: scale(1.2);
+.deleteButton:hover { 
+    transform: scale(1.2); 
 }
 
-.deleteButton svg {
-    color: #e53e3e;
-    display: block;
+.deleteButton svg { 
+    color: #e53e3e; 
+    display: block; 
 }

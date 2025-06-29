@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { IoArrowBack } from "react-icons/io5";
 import styles from "./AddUserScreen.module.css";
 
 export default function AddUserScreen() {
@@ -11,6 +12,10 @@ export default function AddUserScreen() {
         password: "",
         profile_id: "",
     });
+
+    const handleGoBack = () => {
+        navigate(-1);
+    };
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -68,6 +73,9 @@ export default function AddUserScreen() {
 
     return (
         <div className={styles.container}>
+            <button onClick={handleGoBack} className={styles.backButton}>
+                <IoArrowBack size={24} />
+            </button>
             <h2>Cadastro de Novo Usuário</h2>
 
             <form onSubmit={handleSubmit} className={styles.form}>

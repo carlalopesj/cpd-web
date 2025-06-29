@@ -39,6 +39,15 @@
     font-weight: 500;
 }
 
+.backButton {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .form {
     display: flex;
     flex-direction: column;

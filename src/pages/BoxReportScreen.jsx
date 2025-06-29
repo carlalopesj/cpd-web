@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
-import Modal from "./Modal"; 
+import Modal from "./Modal";
 import styles from "./BoxReportScreen.module.css";
 
 export default function BoxReportScreen() {
@@ -48,18 +48,18 @@ export default function BoxReportScreen() {
         fetchBoxes();
     }, []);
 
-    
+
     const deleteClick = (id) => {
-        setBoxToDelete(id); 
+        setBoxToDelete(id);
         setIsModalOpen(true);
     };
-    
+
     const closeModal = () => {
         setIsModalOpen(false);
         setBoxToDelete(null);
     };
 
-    
+
     const confirmDelete = async () => {
         if (!boxToDelete) return;
 
@@ -99,7 +99,7 @@ export default function BoxReportScreen() {
             <button onClick={handleGoBack} className={styles.backButton}>
                 <IoArrowBack size={24} />
             </button>
-            
+
             <h1 className={styles.title}>Relatório de Caixas</h1>
 
             {/*Table*/}
@@ -113,7 +113,7 @@ export default function BoxReportScreen() {
                                 <th>Coeficiente</th>
                                 <th>Status</th>
                                 <th>Etapa</th>
-                                <th>Ações</th> 
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>

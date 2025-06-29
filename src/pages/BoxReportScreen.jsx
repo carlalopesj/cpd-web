@@ -24,7 +24,7 @@ export default function BoxReportScreen() {
         setError(null);
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("https://cpd-backend-shcz.onrender.com/api/boxreport", {
+            const response = await fetch("192.168.0.5:5000/api/boxreport", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function BoxReportScreen() {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`https://cpd-backend-shcz.onrender.com/api/${boxToDelete}`, {
+            const response = await fetch(`http://192.168.0.13:5000/api/${boxToDelete}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,

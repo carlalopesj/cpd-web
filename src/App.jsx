@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import CoefficientScreen from './pages/CoefficientScreen';
 import MovimentScreen from './pages/MovimentScreen';
 import BoxReportScreen from './pages/BoxReportScreen';
+import AddUserScreen from './pages/AddUserScreen';
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Route path="/" element={<LoginPage />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/coefficients" element={<CoefficientScreen />} />
-      <Route path="/movimentacao" element={<MovimentScreen />} />
+      <Route path="/moviment" element={<MovimentScreen />} />
       <Route path="/boxes" element={<BoxReportScreen />} />
+      <Route path="/adduser" element={<AddUserScreen />} />
     </Routes>
   );
 }

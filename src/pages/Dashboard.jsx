@@ -26,7 +26,7 @@ export default function Dashboard() {
 
                 <button
                     className={styles.button}
-                    onClick={() => navigate("/movimentacao")}
+                    onClick={() => navigate("/moviment")}
                 >
                     <span className={styles.buttonText}>Movimentações</span>
                 </button>
@@ -36,6 +36,13 @@ export default function Dashboard() {
                     onClick={() => navigate("/boxes")}
                 >
                     <span className={styles.buttonText}>Caixas</span>
+                </button>
+
+                <button
+                    className={styles.button}
+                    onClick={() => navigate("/adduser")}
+                >
+                    <span className={styles.buttonText}>Adicionar Usuários</span>
                 </button>
             </div>
 

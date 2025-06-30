@@ -88,7 +88,7 @@ export default function BoxReportScreen() {
 
     return (
         <div className={styles.container}>
-            {/*Modal*/}
+            
             <Modal
                 isOpen={isModalOpen}
                 onClose={closeModal}
@@ -102,12 +102,13 @@ export default function BoxReportScreen() {
 
             <h1 className={styles.title}>Relatório de Caixas</h1>
 
-            {/*Table*/}
+            
             {!loading && !error && (
                 <div className={styles.tableContainer}>
                     <table className={styles.table}>
                         <thead>
                             <tr>
+                                <th>Foto</th>
                                 <th>Nº da Caixa</th>
                                 <th>Marca</th>
                                 <th>Coeficiente</th>
@@ -120,13 +121,23 @@ export default function BoxReportScreen() {
                             {boxes.length > 0 ? (
                                 boxes.map((box) => (
                                     <tr key={box.id}>
+                                        <td data-label="Foto">
+                                            {box.photo ? (
+                                                <img
+                                                    src={box.photo}
+                                                    alt="Foto da caixa"
+                                                    style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px" }}
+                                                />
+                                            ) : (
+                                                <span>Sem foto</span>
+                                            )}
+                                        </td>
                                         <td data-label="Nº da Caixa">{box.box_number}</td>
                                         <td data-label="Marca">{box.brand}</td>
                                         <td data-label="Coeficiente">{box.coefficient}</td>
                                         <td data-label="Status">{box.status}</td>
                                         <td data-label="Etapa">{box.stage}</td>
                                         <td data-label="Ações">
-                                            {/*Button*/}
                                             <button
                                                 onClick={() => deleteClick(box.id)}
                                                 className={styles.deleteButton}
@@ -138,7 +149,7 @@ export default function BoxReportScreen() {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="6">Nenhuma caixa encontrada.</td>
+                                    <td colSpan="7">Nenhuma caixa encontrada.</td>
                                 </tr>
                             )}
                         </tbody>

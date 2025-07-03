@@ -40,6 +40,13 @@ export default function Dashboard() {
 
                 <button
                     className={styles.button}
+                    onClick={() => navigate("/boxesdeleted")}
+                >
+                    <span className={styles.buttonText}>Caixas Deletadas</span>
+                </button>
+
+                <button
+                    className={styles.button}
                     onClick={() => navigate("/adduser")}
                 >
                     <span className={styles.buttonText}>Adicionar Usuários</span>

@@ -24,7 +24,7 @@ export default function BoxReportScreen() {
         setError(null);
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("192.168.0.5:5000/api/boxreport", {
+            const response = await fetch("192.168.0.142:5000/api/boxreport", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -63,49 +63,49 @@ export default function BoxReportScreen() {
     const confirmDelete = async () => {
         if (!boxToDelete) return;
 
-        try {
+        try { 
             const token = localStorage.getItem("token");
-            const response = await fetch(`http://192.168.0.13:5000/api/${boxToDelete}`, {
+            const response = await fetch(`http://192.168.0.142:5000/api/${boxToDelete}`, {
                 method: "DELETE",
-                headers: {
+                headers: { 
                     "Authorization": `Bearer ${token}`,
-                },
-            });
-
-            if (response.ok) {
-                alert("Caixa excluída com sucesso!");
-                setBoxes(boxes.filter(box => box.id !== boxToDelete));
+                }, 
+            }); 
+ 
+            if (response.ok) { 
+                alert("Caixa excluída com sucesso!"); 
+                setBoxes(boxes.filter(box => box.id !== boxToDelete)); 
             } else {
-                const result = await response.json();
-                alert(result.message || result.error || "Falha ao excluir a caixa.");
+                const result = await response.json(); 
+                alert(result.message || result.error || "Falha ao excluir a caixa."); 
             }
-        } catch (err) {
-            alert("Erro de conexão ao tentar excluir a caixa.");
+        } catch (err) { 
+            alert("Erro de conexão ao tentar excluir a caixa."); 
         } finally {
-            closeModal();
+            closeModal(); 
         }
     };
-
-    return (
-        <div className={styles.container}>
+ 
+    return ( 
+        <div className={styles.container}> 
             
-            <Modal
-                isOpen={isModalOpen}
-                onClose={closeModal}
-                onConfirm={confirmDelete}
-                message={`Você tem certeza que deseja excluir a caixa de ID ${boxToDelete}?`}
-            />
+            <Modal 
+                isOpen={isModalOpen} 
+                onClose={closeModal} 
+                onConfirm={confirmDelete} 
+                message={`Você tem certeza que deseja excluir a caixa de ID ${boxToDelete}?`} 
+            /> 
 
-            <button onClick={handleGoBack} className={styles.backButton}>
-                <IoArrowBack size={24} />
-            </button>
+            <button onClick={handleGoBack} className={styles.backButton}> 
+                <IoArrowBack size={24} /> 
+            </button> 
 
-            <h1 className={styles.title}>Relatório de Caixas</h1>
+            <h1 className={styles.title}>Relatório de Caixas</h1> 
 
             
-            {!loading && !error && (
-                <div className={styles.tableContainer}>
-                    <table className={styles.table}>
+            {!loading && !error && ( 
+                <div className={styles.tableContainer}> 
+                    <table className={styles.table}> 
                         <thead>
                             <tr>
                                 <th>Foto</th>

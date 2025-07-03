@@ -9,10 +9,10 @@ export default function MovimentScreen() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const formatDateTime = (isoString) => {
-        if (!isoString) return "N/A";
-        return new Date(isoString).toLocaleString('pt-BR');
-    };
+    // const formatDateTime = (isoString) => {
+    //    if (!isoString) return "N/A";
+    //     return new Date(isoString).toLocaleString('pt-BR');
+    // };
 
     useEffect(() => {
         const fetchMoviment = async () => {
@@ -20,7 +20,7 @@ export default function MovimentScreen() {
             setError(null);
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch("http://192.168.0.5:5000/api/moviments", {
+                const response = await fetch("http://192.168.0.142:5000/api/moviments", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -32,8 +32,7 @@ export default function MovimentScreen() {
 
                 if (response.ok) {
                     
-                    const sortedData = result.sort((a, b) => new Date(b.data) - new Date(a.data));
-                    setMoviments(sortedData);
+                    setMoviments(result);
                 } else {
                     setError(result.message || "Erro ao buscar dados");
                     alert(result.message || "Erro ao buscar dados");
@@ -80,21 +79,12 @@ export default function MovimentScreen() {
                             {moviments.length > 0 ? (
                                 moviments.map((item) => (
                                     
-                                    <tr key={`${item["Id da Caixa"]}-${item.data}`}>
-                                        {}
-                                        <td data-label="Data e Hora">{formatDateTime(item.data)}</td>
-                                        
-                                        {}
-                                        <td data-label="Usuário">{item.nome || "N/A"}</td>
-
-                                        {}
-                                        <td data-label="Estágio">{item.estágio || "N/A"}</td>
-                                        
-                                        {}
-                                        <td data-label="Nº da Caixa">{item["Número da Caixa"] || "N/A"}</td>
-                                        
-                                        {}
-                                        <td data-label="Observação">{`Restaurante: ${item.restaurante}, Cargo: ${item.especialidade}`}</td>
+                                    <tr key={item.id}>
+                                        <td data-label="Data e Hora">{item["Data e Hora"]}</td>
+                                        <td data-label="Usuário">{item["Usuário"]}</td>
+                                        <td data-label="Estágio">{item["Estágio"]}</td>
+                                        <td data-label="Nº da Caixa">{item["Nº da Caixa"]}</td>
+                                        <td data-label="Observação">{item["Observação"]}</td>
                                     </tr>
                                 ))
                             ) : (

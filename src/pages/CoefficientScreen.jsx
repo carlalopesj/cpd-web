@@ -20,7 +20,7 @@ export default function CoefficientScreen() {
             setError(null);
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch("http://192.168.0.5:5000/api/production-coefficient", {
+                const response = await fetch("http://192.168.0.142:5000/api/production-coefficient", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

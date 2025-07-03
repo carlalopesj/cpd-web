@@ -47,7 +47,7 @@ export default function AddUserScreen() {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("http://192.168.0.5:5000/api/auth/register", {
+            const response = await fetch("http://192.168.0.142:5000/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -64,6 +64,7 @@ export default function AddUserScreen() {
             } else {
                 alert(data.message || "Erro ao criar usuário.");
             }
+        // eslint-disable-next-line no-unused-vars
         } catch (error) {
             alert("Erro na comunicação com o servidor.");
         }

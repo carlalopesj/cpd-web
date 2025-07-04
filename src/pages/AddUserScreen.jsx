@@ -47,7 +47,7 @@ export default function AddUserScreen() {
 
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("http://192.168.0.5:5000/api/auth/register", {
+            const response = await fetch("https://cpd-backend-h9lb.onrender.com/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

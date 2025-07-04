@@ -1,30 +1,29 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
-import { FaTrash } from "react-icons/fa";
+import { FaUndo } from "react-icons/fa";
 import Modal from "./Modal";
-import styles from "./BoxReportScreen.module.css";
+import styles from "./DeletedBoxScreen.module.css";
 
-export default function BoxReportScreen() {
+export default function DeletedBoxesScreen() {
     const navigate = useNavigate();
     const [boxes, setBoxes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    //Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [boxToDelete, setBoxToDelete] = useState(null);
+    const [boxToRestore, setBoxToRestore] = useState(null);
 
     const handleGoBack = () => {
         navigate(-1);
     };
 
-    const fetchBoxes = async () => {
+    const fetchDeletedBoxes = async () => {
         setLoading(true);
         setError(null);
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("https://cpd-backend-h9lb.onrender.com/api/boxreport", {
+            const response = await fetch("http://192.168.0.5:5000/api/boxreport/deleted", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -35,7 +34,7 @@ export default function BoxReportScreen() {
             if (response.ok) {
                 setBoxes(result.sort((a, b) => b.id - a.id));
             } else {
-                setError(result.message || "Erro ao buscar dados das caixas");
+                setError(result.message || "Erro ao buscar caixas deletadas.");
             }
         } catch (err) {
             setError("Não foi possível conectar ao servidor.");
@@ -45,42 +44,41 @@ export default function BoxReportScreen() {
     };
 
     useEffect(() => {
-        fetchBoxes();
+        fetchDeletedBoxes();
     }, []);
 
-
-    const deleteClick = (id) => {
-        setBoxToDelete(id);
+    const restoreClick = (id) => {
+        setBoxToRestore(id);
         setIsModalOpen(true);
     };
 
     const closeModal = () => {
         setIsModalOpen(false);
-        setBoxToDelete(null);
+        setBoxToRestore(null);
     };
 
-
-    const confirmDelete = async () => {
-        if (!boxToDelete) return;
-
+    const confirmRestore = async () => {
+        if (!boxToRestore) return;
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`https://cpd-backend-h9lb.onrender.com/api/${boxToDelete}`, {
-                method: "DELETE",
+            const response = await fetch(`http://192.168.0.5:5000/api/${boxToRestore}/restore`, {
+                method: "PUT",
                 headers: {
+                    "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`,
                 },
             });
 
             if (response.ok) {
-                alert("Caixa excluída com sucesso!");
-                setBoxes(boxes.filter(box => box.id !== boxToDelete));
+                alert("Caixa restaurada com sucesso!");
+                setBoxes(boxes.filter(box => box.id !== boxToRestore));
             } else {
                 const result = await response.json();
-                alert(result.message || result.error || "Falha ao excluir a caixa.");
+                alert(result.message || result.error || "Falha ao restaurar a caixa.");
             }
         } catch (err) {
-            alert("Erro de conexão ao tentar excluir a caixa.");
+            console.error(err);
+            alert("Erro de conexão ao tentar restaurar a caixa.");
         } finally {
             closeModal();
         }
@@ -88,22 +86,20 @@ export default function BoxReportScreen() {
 
     return (
         <div className={styles.container}>
-
             <Modal
                 isOpen={isModalOpen}
                 onClose={closeModal}
-                onConfirm={confirmDelete}
-                message={`Tem certeza que deseja excluir a caixa de ID ${boxToDelete}?`}
-                confirmText="Sim, Excluir"
-                cancelText="Cancelar"
+                onConfirm={confirmRestore}
+                message={`Deseja restaurar a caixa de ID ${boxToRestore}?`}
+                confirmText="Sim, Restaurar"
+                cancelText="Não, Cancelar"
             />
 
             <button onClick={handleGoBack} className={styles.backButton}>
                 <IoArrowBack size={24} />
             </button>
 
-            <h1 className={styles.title}>Relatório de Caixas</h1>
-
+            <h1 className={styles.title}>Caixas Deletadas</h1>
 
             {!loading && !error && (
                 <div className={styles.tableContainer}>
@@ -141,23 +137,26 @@ export default function BoxReportScreen() {
                                         <td data-label="Etapa">{box.stage}</td>
                                         <td data-label="Ações">
                                             <button
-                                                onClick={() => deleteClick(box.id)}
-                                                className={styles.deleteButton}
+                                                onClick={() => restoreClick(box.id)}
+                                                className={styles.restoreButton}
                                             >
-                                                <FaTrash color="red" />
+                                                <FaUndo color="green" />
                                             </button>
                                         </td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="7">Nenhuma caixa encontrada.</td>
+                                    <td colSpan="7">Nenhuma caixa deletada encontrada.</td>
                                 </tr>
                             )}
                         </tbody>
                     </table>
                 </div>
             )}
+
+            {loading && <p>Carregando caixas deletadas...</p>}
+            {error && <p style={{ color: "red" }}>{error}</p>}
         </div>
     );
 }

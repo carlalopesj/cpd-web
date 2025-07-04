@@ -64,6 +64,7 @@ export default function AddUserScreen() {
             } else {
                 alert(data.message || "Erro ao criar usuário.");
             }
+        // eslint-disable-next-line no-unused-vars
         } catch (error) {
             alert("Erro na comunicação com o servidor.");
         }

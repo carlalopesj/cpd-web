@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
-import styles from "./AddUserScreen.module.css";
+import styles from "./styles/AddUserScreen.module.css";
 
 export default function AddUserScreen() {
     const navigate = useNavigate();
@@ -64,7 +64,6 @@ export default function AddUserScreen() {
             } else {
                 alert(data.message || "Erro ao criar usuário.");
             }
-        // eslint-disable-next-line no-unused-vars
         } catch (error) {
             alert("Erro na comunicação com o servidor.");
         }

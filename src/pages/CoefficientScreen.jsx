@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5"; 
-import styles from "./CoefficientScreen.module.css"; 
+import styles from "./styles/CoefficientScreen.module.css"; 
 
 export default function CoefficientScreen() {
     const navigate = useNavigate();

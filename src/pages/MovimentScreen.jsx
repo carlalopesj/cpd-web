@@ -1,18 +1,13 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
-import styles from "./MovimentScreen.module.css";
+import styles from "./styles/MovimentScreen.module.css";
 
 export default function MovimentScreen() {
     const navigate = useNavigate();
     const [moviments, setMoviments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    // const formatDateTime = (isoString) => {
-    //    if (!isoString) return "N/A";
-    //     return new Date(isoString).toLocaleString('pt-BR');
-    // }; 
 
     useEffect(() => {
         const fetchMoviment = async () => {

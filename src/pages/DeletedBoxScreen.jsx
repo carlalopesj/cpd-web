@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { FaUndo } from "react-icons/fa";
-import Modal from "./Modal";
-import styles from "./DeletedBoxScreen.module.css";
+import Modal from "../components/Modal";
+import styles from "./styles/DeletedBoxScreen.module.css";
 
 export default function DeletedBoxesScreen() {
     const navigate = useNavigate();

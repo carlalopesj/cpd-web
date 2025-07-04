@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../components/Logo";
 import Input from "../components/Input";
 import CustomButton from "../components/CustomButton";
-import styles from "./LoginScreen.module.css";
+import styles from "./styles/LoginScreen.module.css";
 
 export default function LoginScreen() {
   const navigate = useNavigate();

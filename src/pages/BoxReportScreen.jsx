@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
-import Modal from "./Modal";
-import styles from "./BoxReportScreen.module.css";
+import Modal from "../components/Modal";
+import styles from "./styles/BoxReportScreen.module.css";
 
 export default function BoxReportScreen() {
+
     const navigate = useNavigate();
     const [boxes, setBoxes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    //Modal
+    const [error, setError] = useState(null); 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [boxToDelete, setBoxToDelete] = useState(null);
 

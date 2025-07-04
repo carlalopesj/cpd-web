@@ -1,8 +1,8 @@
-import styles from "./Modal.module.css";
+import styles from "./styles/Modal.module.css";
 
 export default function Modal({ 
     isOpen, 
-    onClose, 
+    onClose,
     onConfirm, 
     message, 
     confirmText = "Confirmar", 

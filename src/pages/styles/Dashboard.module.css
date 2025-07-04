@@ -1,7 +1,15 @@
 .container { 
     padding: 20px;
     position: relative;
+    font-family: Arial, sans-serif;
 }
+
+.container h1 {
+    color: #333;
+    font-size: 2.8em;
+    margin-bottom: 2rem;
+}
+
 
 .buttonGroup {
     display: flex;
@@ -54,5 +62,6 @@
 
     .container h1 {
         margin-top: 40px;
+        font-size: 2em;
     }
 }

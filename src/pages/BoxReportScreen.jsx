@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
 import Modal from "../components/Modal";
+import ModalImage from "../components/ModalImage";
 import styles from "./styles/BoxReportScreen.module.css";
 
 export default function BoxReportScreen() {
@@ -10,12 +11,24 @@ export default function BoxReportScreen() {
     const navigate = useNavigate();
     const [boxes, setBoxes] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); 
+    const [error, setError] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [boxToDelete, setBoxToDelete] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
     const handleGoBack = () => {
         navigate(-1);
+    };
+
+    const openImageModal = (imageUrl) => {
+        setSelectedImage(imageUrl);
+        setIsImageModalOpen(true);
+    };
+
+    const closeImageModal = () => {
+        setSelectedImage(null);
+        setIsImageModalOpen(false);
     };
 
     const fetchBoxes = async () => {
@@ -97,6 +110,12 @@ export default function BoxReportScreen() {
                 cancelText="Cancelar"
             />
 
+            <ModalImage
+                isOpen={isImageModalOpen}
+                imageUrl={selectedImage}
+                onClose={closeImageModal}
+            />
+
             <button onClick={handleGoBack} className={styles.backButton}>
                 <IoArrowBack size={24} />
             </button>
@@ -127,7 +146,8 @@ export default function BoxReportScreen() {
                                                 <img
                                                     src={box.photo}
                                                     alt="Foto da caixa"
-                                                    style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px" }}
+                                                    style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px", cursor: "pointer" }}
+                                                    onClick={() => openImageModal(box.photo)}
                                                 />
                                             ) : (
                                                 <span>Sem foto</span>

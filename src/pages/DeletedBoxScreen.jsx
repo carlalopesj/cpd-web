@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IoArrowBack } from "react-icons/io5";
 import { FaUndo } from "react-icons/fa";
 import Modal from "../components/Modal";
+import ModalImage from "../components/ModalImage";
 import styles from "./styles/DeletedBoxScreen.module.css";
 
 export default function DeletedBoxesScreen() {
@@ -10,12 +11,23 @@ export default function DeletedBoxesScreen() {
     const [boxes, setBoxes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [boxToRestore, setBoxToRestore] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
     const handleGoBack = () => {
         navigate(-1);
+    };
+
+    const openImageModal = (imageUrl) => {
+        setSelectedImage(imageUrl);
+        setIsImageModalOpen(true);
+    };
+
+    const closeImageModal = () => {
+        setSelectedImage(null);
+        setIsImageModalOpen(false);
     };
 
     const fetchDeletedBoxes = async () => {
@@ -95,6 +107,12 @@ export default function DeletedBoxesScreen() {
                 cancelText="Não, Cancelar"
             />
 
+            <ModalImage
+                isOpen={isImageModalOpen}
+                imageUrl={selectedImage}
+                onClose={closeImageModal}
+            />
+
             <button onClick={handleGoBack} className={styles.backButton}>
                 <IoArrowBack size={24} />
             </button>
@@ -124,7 +142,8 @@ export default function DeletedBoxesScreen() {
                                                 <img
                                                     src={box.photo}
                                                     alt="Foto da caixa"
-                                                    style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px" }}
+                                                    style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px", cursor: "pointer" }}
+                                                    onClick={() => openImageModal(box.photo)}
                                                 />
                                             ) : (
                                                 <span>Sem foto</span>

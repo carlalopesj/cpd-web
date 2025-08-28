@@ -35,7 +35,7 @@ export default function DeletedBoxesScreen() {
         setError(null);
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("https://cpd-backend-h9lb.onrender.com/api/boxreport/deleted", {
+            const response = await fetch("https://cpd-backend-production-a0cb.up.railway.app/api/boxreport/deleted", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function DeletedBoxesScreen() {
         if (!boxToRestore) return;
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`https://cpd-backend-h9lb.onrender.com/api/${boxToRestore}/restore`, {
+            const response = await fetch(`https://cpd-backend-production-a0cb.up.railway.app/api/${boxToRestore}/restore`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

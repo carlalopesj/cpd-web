@@ -15,7 +15,7 @@ export default function MovimentScreen() {
             setError(null);
             try {
                 const token = localStorage.getItem("token");
-                const response = await fetch("https://cpd-backend-h9lb.onrender.com/api/moviments", {
+                const response = await fetch("https://cpd-backend-production-a0cb.up.railway.app/api/moviments", {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

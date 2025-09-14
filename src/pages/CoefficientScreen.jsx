@@ -71,6 +71,7 @@ export default function CoefficientScreen() {
                         <thead>
                             <tr>
                                 <th>Coeficiente</th>
+                                <th>Quem fez a limpeza?</th>
                                 <th>Usuário</th>
                                 <th>Nº da Caixa</th>
                                 {}
@@ -84,6 +85,7 @@ export default function CoefficientScreen() {
                                     
                                     <tr key={item["Id da Caixa"] || index}>
                                         <td data-label="Coeficiente">{item["Coeficiente de Rendimento"]}</td>
+                                        <td data-label="Quem fez a limpeza?">{item["Quem fez a limpeza?"]}</td>
                                         <td data-label="Usuário">{item["Nome do Usuario"]}</td>
                                         <td data-label="Nº da Caixa">{item["Número da Caixa"]}</td>
                                         <td data-label="ID Caixa">{item["Id da Caixa"]}</td>

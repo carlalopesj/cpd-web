@@ -14,7 +14,7 @@ export default function Dashboard() {
 
     return (
         <div className={styles.container}>
-            <h1>Bem-vindo ao Sistema</h1>
+            <h1>Centro de Produção e Distribuição</h1>
 
             <div className={styles.buttonGroup}>
                 <button
